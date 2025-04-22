@@ -10,22 +10,25 @@ function getHumanChoice(){
 }
 
 function playRound(humanChoice, computerchoice){
-    console.log("your choice: "+humanChoice);
-    console.log("computer's choice: "+computerchoice);
+    const resultDiv = document.getElementById("result");
+
+    let result = `your choice: ${humanChoice}<br>Computer's choice: ${computerchoice}<br>`;
 
     if(humanChoice === computerchoice){
-        console.log("it's a tie! both choice "+humanChoice);
+        result +=`it's a tie! both choice ${humanChoice}.`;
     }else if(
         (humanChoice === 'rock' && computerchoice === 'scissors') ||
         (humanChoice === 'scissors' && computerchoice === 'paper') ||
         (humanChoice === 'paper' && computerchoice === 'rock')
     ){
-        console.log("you win! "+humanChoice+ " beats "+computerchoice);
+        result +=`you win! ${humanChoice} beats ${computerchoice}.`;
     }else{
-        console.log("you lose! "+computerchoice+ " beats "+humanChoice)
+        result += `you lose! ${computerchoice}  beats ${humanChoice}.`;
     }
+
+    resultDiv.innerHTML = result;
 }
 
-let humanSelection = getHumanChoice();
-let computerSelection = getComputerChoice();
-playRound(humanSelection, computerSelection);
+document.getElementById("rock").addEventListener("click", () => {playRound("rock", getComputerChoice());});
+document.getElementById("paper").addEventListener("click", () => {playRound("paper", getComputerChoice());});
+document.getElementById("scissors").addEventListener("click", () => {playRound("scissors", getComputerChoice());});
